@@ -1,8 +1,24 @@
+import { useState } from "react";
+import TaskForm from "./components/TaskForm";
+
 function App() {
+  const [tasks, setTasks] = useState([]);
+
+  const addTask = (taskText) => {
+    //New task is added
+    const newTask = {
+      id: Date.now(),
+      text: taskText,
+      completed: false,
+    };
+    setTasks([...tasks, newTask]);
+  };
   return (
-    <>
-      <h2>taskflow</h2>
-    </>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">TaskFlow</h1>
+
+      <TaskForm addTask={addTask} />
+    </div>
   );
 }
 
