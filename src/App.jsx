@@ -2,9 +2,12 @@ import { useState } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import TaskItem from "./components/TaskItem";
+import FilterBar from "./components/FilterBar";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const addTask = (taskText) => {
     //New task is added
@@ -26,12 +29,33 @@ function App() {
       ),
     );
   };
+
+  const [filter, setFilter] = useState("all");
+  const filteredTasks = tasks.filter((task) => {
+    let statusMatch = true;
+
+    if (filter === "completed") statusMatch = task.completed;
+    else if (filter === "pending") statusMatch = !task.completed;
+
+    const searchMatch = task.text
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
+    return statusMatch && searchMatch;
+  });
+
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">TaskFlow</h1>
 
       <TaskForm addTask={addTask} />
-      <TaskList tasks={tasks} deleteTask={deleteTask} toggleTask={toggleTask} />
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <FilterBar setFilter={setFilter} />
+      <TaskList
+        tasks={filteredTasks}
+        deleteTask={deleteTask}
+        toggleTask={toggleTask}
+      />
     </div>
   );
 }
