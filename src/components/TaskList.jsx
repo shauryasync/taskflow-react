@@ -1,7 +1,7 @@
 import React from "react";
 import TaskItem from "./TaskItem";
 
-function TaskList({ tasks, deleteTask, toggleTask }) {
+function TaskList({ tasks, deleteTask, toggleTask, updateTask }) {
   return (
     <div>
       <ul>
@@ -11,6 +11,7 @@ function TaskList({ tasks, deleteTask, toggleTask }) {
             task={task}
             deleteTask={deleteTask}
             toggleTask={toggleTask}
+            updateTask={updateTask}
           />
         ))}
       </ul>

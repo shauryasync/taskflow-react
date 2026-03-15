@@ -46,6 +46,12 @@ function App() {
     return statusMatch && searchMatch;
   });
 
+  const updateTask = (id, newText) => {
+    setTasks(
+      tasks.map((task) => (task.id === id ? { ...task, text: newText } : task)),
+    );
+  };
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -61,6 +67,7 @@ function App() {
         tasks={filteredTasks}
         deleteTask={deleteTask}
         toggleTask={toggleTask}
+        updateTask={updateTask}
       />
     </div>
   );
