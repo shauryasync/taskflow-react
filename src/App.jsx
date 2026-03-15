@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import TaskItem from "./components/TaskItem";
@@ -6,11 +6,13 @@ import FilterBar from "./components/FilterBar";
 import SearchBar from "./components/SearchBar";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
   const [searchQuery, setSearchQuery] = useState("");
 
   const addTask = (taskText) => {
-    //New task is added
     const newTask = {
       id: Date.now(),
       text: taskText,
@@ -43,6 +45,10 @@ function App() {
 
     return statusMatch && searchMatch;
   });
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <div className="p-6">
