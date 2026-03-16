@@ -12,11 +12,13 @@ function App() {
   });
   const [searchQuery, setSearchQuery] = useState("");
 
-  const addTask = (taskText) => {
+  const addTask = (taskText, priority, dueDate) => {
     const newTask = {
       id: Date.now(),
       text: taskText,
       completed: false,
+      priority,
+      dueDate,
     };
     setTasks([...tasks, newTask]);
   };

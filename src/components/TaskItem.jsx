@@ -9,36 +9,45 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
     if (!editText.trim()) return;
 
     updateTask(task.id, editText);
-
     setIsEditing(false);
   };
 
   return (
     <li className="flex justify-between items-center border p-2 rounded mb-2">
+      {/* Left side: task text or edit input */}
       <div className="flex items-center gap-2 flex-grow">
         {isEditing ? (
           <input
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
-            className="border rounded px-2 py-1 w-full "
+            className="border rounded px-2 py-1 w-full"
           />
         ) : (
-          <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleTask(task.id)}
-            />
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleTask(task.id)}
+              />
 
-            <span
-              className={task.completed ? "line-through text-gray-400" : ""}
-            >
-              {task.text}
-            </span>
+              <span
+                className={task.completed ? "line-through text-gray-400" : ""}
+              >
+                {task.text}
+              </span>
+            </div>
+
+            <div className="text-sm text-gray-600 ml-6">
+              <span>Priority: {task.priority || "none"}</span>
+              {" | "}
+              <span>Due: {task.dueDate || "no date"}</span>
+            </div>
           </div>
         )}
       </div>
 
+      {/* Right side buttons */}
       <div className="flex gap-2 shrink-0">
         <button
           className="bg-gray-500 text-white px-2 py-1 rounded"

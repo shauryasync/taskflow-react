@@ -1,7 +1,14 @@
 import React from "react";
 import TaskItem from "./TaskItem";
 
-function TaskList({ tasks, deleteTask, toggleTask, updateTask }) {
+function TaskList({
+  tasks,
+  deleteTask,
+  toggleTask,
+  updateTask,
+  dueDate,
+  priority,
+}) {
   return (
     <div>
       <ul>
@@ -12,6 +19,8 @@ function TaskList({ tasks, deleteTask, toggleTask, updateTask }) {
             deleteTask={deleteTask}
             toggleTask={toggleTask}
             updateTask={updateTask}
+            dueDate={dueDate}
+            priority={priority}
           />
         ))}
       </ul>
