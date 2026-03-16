@@ -11,6 +11,11 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
     updateTask(task.id, editText);
     setIsEditing(false);
   };
+  const priorityIcons = {
+    low: "🟢",
+    medium: "🟡",
+    high: "🔴",
+  };
 
   return (
     <li className="flex justify-between items-center border p-2 rounded mb-2">
@@ -39,7 +44,10 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
             </div>
 
             <div className="text-sm text-gray-600 ml-6">
-              <span>Priority: {task.priority || "none"}</span>
+              <span>
+                Priority:{priorityIcons[task.priority] || ""}
+                {task.priority || "none"}
+              </span>
               {" | "}
               <span>Due: {task.dueDate || "no date"}</span>
             </div>
