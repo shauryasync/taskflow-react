@@ -17,6 +17,13 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
     high: "🔴",
   };
 
+  const formattedDate = task.dueDate
+    ? new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        day: "numeric",
+      }).format(new Date(task.dueDate))
+    : "no date";
+
   return (
     <li className="flex justify-between items-center border p-2 rounded mb-2">
       {/* Left side: task text or edit input */}
@@ -49,7 +56,7 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
                 {task.priority || "none"}
               </span>
               {" | "}
-              <span>Due: {task.dueDate || "no date"}</span>
+              <span>Due: {formattedDate}</span>
             </div>
           </div>
         )}
