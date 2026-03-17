@@ -20,24 +20,43 @@ function TaskForm({ addTask }) {
       <input
         type="text"
         placeholder="add a task"
-        className="rounded w-full border p-2"
+        className="border rounded p-2 bg-white text-black 
+             dark:bg-gray-700 dark:text-white dark:border-gray-600"
         value={taskText}
         onChange={(e) => setTaskText(e.target.value)}
       />
       <input
-        className="border rounded p-2"
+        className="border rounded p-2 bg-white text-black 
+             dark:bg-gray-700 dark:text-white dark:border-gray-600"
         type="date"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
       />
       <select
-        className="border p-2 rounded"
         value={priority}
         onChange={(e) => setPriority(e.target.value)}
+        className="border rounded p-2 bg-white text-black 
+             dark:bg-gray-700 dark:text-white dark:border-gray-600 
+             focus:outline-none"
       >
-        <option value="low">low</option>
-        <option value="medium">medium</option>
-        <option value="high">high</option>
+        <option
+          value="low"
+          className="bg-white text-black dark:bg-gray-700 dark:text-white"
+        >
+          Low
+        </option>
+        <option
+          value="medium"
+          className="bg-white text-black dark:bg-gray-700 dark:text-white"
+        >
+          Medium
+        </option>
+        <option
+          value="high"
+          className="bg-white text-black dark:bg-gray-700 dark:text-white"
+        >
+          High
+        </option>
       </select>
       <button
         type="submit"

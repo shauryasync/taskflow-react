@@ -25,14 +25,15 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
     : "no date";
 
   return (
-    <li className="flex justify-between items-center border p-2 rounded mb-2">
+    <li className="flex justify-between items-start bg-white dark:bg-gray-800 border rounded-lg p-4 mb-3 shadow-sm hover:shadow-md transition">
       {/* Left side: task text or edit input */}
-      <div className="flex items-center gap-2 flex-grow">
+      <div className="flex items-start gap-3 flex-grow">
         {isEditing ? (
           <input
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
-            className="border rounded px-2 py-1 w-full"
+            className="border rounded p-2 bg-white text-black 
+             dark:bg-gray-700 dark:text-white dark:border-gray-600"
           />
         ) : (
           <div className="flex flex-col">
@@ -44,15 +45,15 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
               />
 
               <span
-                className={task.completed ? "line-through text-gray-400" : ""}
+                className={`font-medium ${task.completed ? "line-through dark:text-gray-400 text-gray-400" : ""}`}
               >
                 {task.text}
               </span>
             </div>
 
-            <div className="text-sm text-gray-600 ml-6">
+            <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               <span>
-                Priority:{priorityIcons[task.priority] || ""}
+                Priority: {priorityIcons[task.priority] || ""}{" "}
                 {task.priority || "none"}
               </span>
               {" | "}
@@ -63,9 +64,9 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
       </div>
 
       {/* Right side buttons */}
-      <div className="flex gap-2 shrink-0">
+      <div className="flex gap-2 ml-4">
         <button
-          className="bg-gray-500 text-white px-2 py-1 rounded"
+          className="text-sm bg-gray-500 text-white px-3 py-1 rounded"
           onClick={() => {
             if (isEditing) {
               handleSave();
@@ -80,7 +81,7 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
 
         <button
           onClick={() => deleteTask(task.id)}
-          className="bg-red-500 text-white px-2 py-1 rounded"
+          className="text-sm bg-red-500  text-white px-3 py-1 rounded"
         >
           Delete
         </button>

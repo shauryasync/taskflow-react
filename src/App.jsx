@@ -12,6 +12,14 @@ function App() {
   });
   const [searchQuery, setSearchQuery] = useState("");
 
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
+
   const addTask = (taskText, priority, dueDate) => {
     const newTask = {
       id: Date.now(),
@@ -66,19 +74,30 @@ function App() {
   }, [tasks]);
 
   return (
-    <div className="min-h-screen bg-gray-200 flex justify-center items-start p-6">
-      <div className="w-full max-w-2xl bg-white rounded-lg shadow p-6">
-        <h1 className="text-2xl font-semibold mb-6 text-center">TaskFlow</h1>
+    <div className={darkMode ? "dark" : ""}>
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex justify-center items-start p-6">
+        <div className="w-full max-w-2xl bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg shadow p-6">
+          {/* Toggle */}
+          <div className="flex justify-end mb-4">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="text-sm px-3 py-1 rounded border dark:border-gray-600"
+            >
+              {darkMode ? "☀️ Light" : "🌙 Dark"}
+            </button>
+          </div>
 
-        <div className="p-6">
-          <h1 className="text-2xl font-bold mb-4">TaskFlow</h1>
+          {/* Title */}
+          <h1 className="text-2xl font-semibold mb-6 text-center">TaskFlow</h1>
 
+          {/* Components */}
           <TaskForm addTask={addTask} />
           <SearchBar
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />
           <FilterBar setFilter={setFilter} />
+
           <TaskList
             tasks={sortedTasks}
             deleteTask={deleteTask}
