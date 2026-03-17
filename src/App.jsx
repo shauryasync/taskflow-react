@@ -48,6 +48,13 @@ function App() {
     return statusMatch && searchMatch;
   });
 
+  const sortedTasks = [...filteredTasks].sort((a, b) => {
+    if (!a.dueDate) return 1;
+    if (!b.dueDate) return -1;
+
+    return new Date(a.dueDate) - new Date(b.dueDate);
+  });
+
   const updateTask = (id, newText) => {
     setTasks(
       tasks.map((task) => (task.id === id ? { ...task, text: newText } : task)),
@@ -66,7 +73,7 @@ function App() {
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <FilterBar setFilter={setFilter} />
       <TaskList
-        tasks={filteredTasks}
+        tasks={sortedTasks}
         deleteTask={deleteTask}
         toggleTask={toggleTask}
         updateTask={updateTask}
