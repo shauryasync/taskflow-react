@@ -66,18 +66,27 @@ function App() {
   }, [tasks]);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">TaskFlow</h1>
+    <div className="min-h-screen bg-gray-200 flex justify-center items-start p-6">
+      <div className="w-full max-w-2xl bg-white rounded-lg shadow p-6">
+        <h1 className="text-2xl font-semibold mb-6 text-center">TaskFlow</h1>
 
-      <TaskForm addTask={addTask} />
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <FilterBar setFilter={setFilter} />
-      <TaskList
-        tasks={sortedTasks}
-        deleteTask={deleteTask}
-        toggleTask={toggleTask}
-        updateTask={updateTask}
-      />
+        <div className="p-6">
+          <h1 className="text-2xl font-bold mb-4">TaskFlow</h1>
+
+          <TaskForm addTask={addTask} />
+          <SearchBar
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          <FilterBar setFilter={setFilter} />
+          <TaskList
+            tasks={sortedTasks}
+            deleteTask={deleteTask}
+            toggleTask={toggleTask}
+            updateTask={updateTask}
+          />
+        </div>
+      </div>
     </div>
   );
 }
