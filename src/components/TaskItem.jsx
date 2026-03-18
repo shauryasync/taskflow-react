@@ -29,7 +29,12 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
     : "no date";
 
   return (
-    <li className="flex justify-between items-start bg-white dark:bg-gray-800 border rounded-lg p-4 mb-3 shadow-sm hover:shadow-md transition">
+    <li
+      className="flex flex-col sm:flex-row sm:justify-between items-start gap-2
+     bg-white
+     dark:bg-gray-800 border rounded-lg p-4 mb-3 
+     shadow-sm hover:shadow-md transition"
+    >
       {/* Left side: task text or edit input */}
       <div className="flex items-start gap-3 flex-grow">
         {isEditing ? (
@@ -56,7 +61,7 @@ dark:bg-gray-700 dark:text-white dark:border-gray-600"
               </span>
             </div>
 
-            <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            <div className="text-sm text-gray-700 dark:text-gray-400 mt-1">
               <span>
                 Priority: {priorityIcons[task.priority] || ""}{" "}
                 {formattedPriority}
@@ -69,9 +74,9 @@ dark:bg-gray-700 dark:text-white dark:border-gray-600"
       </div>
 
       {/* Right side buttons */}
-      <div className="flex gap-2 ml-4">
+      <div className="flex gap-2 mt-2 sm:mt-0">
         <button
-          className="text-sm bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded transition"
+          className="flex gap-2 w-full sm:w-auto justify-end text-sm bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded transition"
           onClick={() => {
             if (isEditing) {
               handleSave();
@@ -86,7 +91,7 @@ dark:bg-gray-700 dark:text-white dark:border-gray-600"
 
         <button
           onClick={() => deleteTask(task.id)}
-          className="text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition"
+          className="flex gap-2 w-full sm:w-auto justify-end text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition"
         >
           Delete
         </button>

@@ -16,53 +16,50 @@ function TaskForm({ addTask }) {
     setPriority("medium");
   };
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 mb-4 items-center">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-2 mb-4 sm:flex-row"
+    >
+      {/* Task input */}
       <input
         type="text"
         placeholder="Add a task"
-        className=" flex-grow border rounded p-2 bg-white text-black 
-             dark:bg-gray-700 dark:text-white dark:border-gray-600"
         value={taskText}
         onChange={(e) => setTaskText(e.target.value)}
+        className="w-full sm:flex-grow border rounded p-2 
+      bg-white text-black 
+      dark:bg-gray-700 dark:text-white dark:border-gray-600"
       />
+
+      {/* Date */}
       <input
-        className=" flex-grow border rounded p-2 bg-white text-black 
-             dark:bg-gray-700 dark:text-white dark:border-gray-600"
         type="date"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
+        className="w-full sm:w-auto border rounded p-2 
+      bg-white text-black 
+      dark:bg-gray-700 dark:text-white dark:border-gray-600"
       />
+
+      {/* Priority */}
       <select
         value={priority}
         onChange={(e) => setPriority(e.target.value)}
-        className="border rounded p-2 bg-white text-black 
-             dark:bg-gray-700 dark:text-white dark:border-gray-600 
-             focus:outline-none"
+        className="w-full sm:w-auto border rounded p-2 
+      bg-white text-black 
+      dark:bg-gray-700 dark:text-white dark:border-gray-600"
       >
-        <option
-          value="low"
-          className="bg-white text-black dark:bg-gray-700 dark:text-white"
-        >
-          Low
-        </option>
-        <option
-          value="medium"
-          className="bg-white text-black dark:bg-gray-700 dark:text-white"
-        >
-          Medium
-        </option>
-        <option
-          value="high"
-          className="bg-white text-black dark:bg-gray-700 dark:text-white"
-        >
-          High
-        </option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
       </select>
+
+      {/* Button */}
       <button
         type="submit"
-        className="rounded bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 transition"
+        className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition"
       >
-        add
+        Add
       </button>
     </form>
   );

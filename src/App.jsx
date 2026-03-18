@@ -75,8 +75,14 @@ function App() {
 
   return (
     <div className={darkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex justify-center items-start p-6">
-        <div className="w-full max-w-2xl bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg shadow p-6">
+      <div
+        className="min-h-screen bg-gray-100 dark:bg-gray-900 flex justify-center
+       items-start p-4 sm:p-6"
+      >
+        <div
+          className="w-full max-w-2xl sm:max-w-2xl mx-auto  bg-white dark:bg-gray-800
+         text-black dark:text-white rounded-lg shadow p-4 sm:p-6"
+        >
           <div className="flex justify-end mb-4">
             <button
               onClick={() => setDarkMode((prev) => !prev)}
