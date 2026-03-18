@@ -1,5 +1,3 @@
-import React from "react";
-
 function SearchBar({ searchQuery, setSearchQuery }) {
   return (
     <div className="mb-4">
