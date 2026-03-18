@@ -16,7 +16,15 @@ function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
+    const root = document.documentElement;
+
+    if (darkMode) {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
   }, [darkMode]);
 
   const addTask = (taskText, priority, dueDate) => {
@@ -74,37 +82,32 @@ function App() {
   }, [tasks]);
 
   return (
-    <div className={darkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex justify-center items-start p-6">
-        <div className="w-full max-w-2xl bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg shadow p-6">
-          {/* Toggle */}
-          <div className="flex justify-end mb-4">
-            <button
-              onClick={() => setDarkMode((prev) => !prev)}
-              className="text-sm px-3 py-1 rounded border dark:border-gray-600"
-            >
-              {darkMode ? "☀️ Light" : "🌙 Dark"}
-            </button>
-          </div>
-
-          {/* Title */}
-          <h1 className="text-2xl font-semibold mb-6 text-center">TaskFlow</h1>
-
-          {/* Components */}
-          <TaskForm addTask={addTask} />
-          <SearchBar
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
-          <FilterBar filter={filter} setFilter={setFilter} />
-
-          <TaskList
-            tasks={sortedTasks}
-            deleteTask={deleteTask}
-            toggleTask={toggleTask}
-            updateTask={updateTask}
-          />
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex justify-center items-start p-6">
+      <div className="w-full max-w-2xl bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg shadow p-6">
+        {/* Toggle */}
+        <div className="flex justify-end mb-4">
+          <button
+            onClick={() => setDarkMode((prev) => !prev)}
+            className="text-sm px-3 py-1 rounded border dark:border-gray-600"
+          >
+            {darkMode ? "☀️ Light" : "🌙 Dark"}
+          </button>
         </div>
+
+        {/* Title */}
+        <h1 className="text-2xl font-semibold mb-6 text-center">TaskFlow</h1>
+
+        {/* Components */}
+        <TaskForm addTask={addTask} />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <FilterBar filter={filter} setFilter={setFilter} />
+
+        <TaskList
+          tasks={sortedTasks}
+          deleteTask={deleteTask}
+          toggleTask={toggleTask}
+          updateTask={updateTask}
+        />
       </div>
     </div>
   );

@@ -41,7 +41,7 @@ dark:bg-gray-700 dark:text-white dark:border-gray-600"
           />
         ) : (
           <div className="flex flex-col">
-            <div className="flex items-start gap-2">
+            <div className="flex mt-1 gap-2 scale-110">
               <input
                 type="checkbox"
                 aria-label="Toggle task completion"
@@ -60,7 +60,6 @@ dark:bg-gray-700 dark:text-white dark:border-gray-600"
               <span>
                 Priority: {priorityIcons[task.priority] || ""}{" "}
                 {formattedPriority}
-                {task.priority || "none"}
               </span>
               {" | "}
               <span>Due: {formattedDate}</span>
