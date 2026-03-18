@@ -32,6 +32,9 @@ function TaskForm({ addTask }) {
       />
 
       {/* Date */}
+      <p className="text-xs text-gray-500 dark:text-gray-400">
+        Select due date
+      </p>
       <input
         type="date"
         value={dueDate}
