@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
-import TaskItem from "./components/TaskItem";
 import FilterBar from "./components/FilterBar";
 import SearchBar from "./components/SearchBar";
 
@@ -49,9 +48,9 @@ function App() {
     if (filter === "completed") statusMatch = task.completed;
     else if (filter === "pending") statusMatch = !task.completed;
 
-    const searchMatch = task.text
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    const query = searchQuery.toLowerCase();
+
+    const searchMatch = task.text.toLowerCase().includes(query);
 
     return statusMatch && searchMatch;
   });
@@ -59,6 +58,7 @@ function App() {
   const sortedTasks = [...filteredTasks].sort((a, b) => {
     if (!a.dueDate) return 1;
     if (!b.dueDate) return -1;
+    if (!a.dueDate && !b.dueDate) return 0;
 
     return new Date(a.dueDate) - new Date(b.dueDate);
   });
@@ -80,7 +80,7 @@ function App() {
           {/* Toggle */}
           <div className="flex justify-end mb-4">
             <button
-              onClick={() => setDarkMode(!darkMode)}
+              onClick={() => setDarkMode((prev) => !prev)}
               className="text-sm px-3 py-1 rounded border dark:border-gray-600"
             >
               {darkMode ? "☀️ Light" : "🌙 Dark"}
@@ -96,7 +96,7 @@ function App() {
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />
-          <FilterBar setFilter={setFilter} />
+          <FilterBar filter={filter} setFilter={setFilter} />
 
           <TaskList
             tasks={sortedTasks}

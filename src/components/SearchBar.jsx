@@ -2,10 +2,12 @@ import React from "react";
 
 function SearchBar({ searchQuery, setSearchQuery }) {
   return (
-    <div>
+    <div className="mb-4">
       <input
-        className="rounded p-2 border w-full"
-        placeholder="search task"
+        className="w-full border rounded p-2 
+bg-white text-black 
+dark:bg-gray-700 dark:text-white dark:border-gray-600"
+        placeholder="🔍 Search tasks..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />

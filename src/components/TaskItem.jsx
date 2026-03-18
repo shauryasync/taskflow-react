@@ -17,6 +17,10 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
     high: "🔴",
   };
 
+  const formattedPriority = task.priority
+    ? task.priority.charAt(0).toUpperCase() + task.priority.slice(1)
+    : "None";
+
   const formattedDate = task.dueDate
     ? new Intl.DateTimeFormat("en-US", {
         month: "short",
@@ -32,14 +36,15 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
           <input
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
-            className="border rounded p-2 bg-white text-black 
-             dark:bg-gray-700 dark:text-white dark:border-gray-600"
+            className="w-full border rounded p-2 bg-white text-black 
+dark:bg-gray-700 dark:text-white dark:border-gray-600"
           />
         ) : (
           <div className="flex flex-col">
-            <div className="flex items-center gap-2">
+            <div className="flex items-start gap-2">
               <input
                 type="checkbox"
+                aria-label="Toggle task completion"
                 checked={task.completed}
                 onChange={() => toggleTask(task.id)}
               />
@@ -54,6 +59,7 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
             <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               <span>
                 Priority: {priorityIcons[task.priority] || ""}{" "}
+                {formattedPriority}
                 {task.priority || "none"}
               </span>
               {" | "}
@@ -66,7 +72,7 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
       {/* Right side buttons */}
       <div className="flex gap-2 ml-4">
         <button
-          className="text-sm bg-gray-500 text-white px-3 py-1 rounded"
+          className="text-sm bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded transition"
           onClick={() => {
             if (isEditing) {
               handleSave();
@@ -81,7 +87,7 @@ function TaskItem({ task, deleteTask, toggleTask, updateTask }) {
 
         <button
           onClick={() => deleteTask(task.id)}
-          className="text-sm bg-red-500  text-white px-3 py-1 rounded"
+          className="text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition"
         >
           Delete
         </button>

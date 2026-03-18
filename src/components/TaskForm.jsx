@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function TaskForm({ addTask }) {
   const [taskText, setTaskText] = useState("");
@@ -10,23 +10,23 @@ function TaskForm({ addTask }) {
 
     if (!taskText.trim()) return;
 
-    addTask(taskText, priority, dueDate);
+    addTask(taskText, priority, dueDate || null);
     setTaskText("");
     setDueDate("");
     setPriority("medium");
   };
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
+    <form onSubmit={handleSubmit} className="flex gap-2 mb-4 items-center">
       <input
         type="text"
-        placeholder="add a task"
-        className="border rounded p-2 bg-white text-black 
+        placeholder="Add a task"
+        className=" flex-grow border rounded p-2 bg-white text-black 
              dark:bg-gray-700 dark:text-white dark:border-gray-600"
         value={taskText}
         onChange={(e) => setTaskText(e.target.value)}
       />
       <input
-        className="border rounded p-2 bg-white text-black 
+        className=" flex-grow border rounded p-2 bg-white text-black 
              dark:bg-gray-700 dark:text-white dark:border-gray-600"
         type="date"
         value={dueDate}
@@ -60,7 +60,7 @@ function TaskForm({ addTask }) {
       </select>
       <button
         type="submit"
-        className="rounded bg-blue-500 text-white px-4 py-2"
+        className="rounded bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 transition"
       >
         add
       </button>
