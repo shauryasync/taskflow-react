@@ -18,51 +18,57 @@ function TaskForm({ addTask }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-2 mb-4 sm:flex-row"
+      className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow mb-6 flex flex-col gap-3"
     >
-      {/* Task input */}
-      <input
-        type="text"
-        placeholder="Add a task"
-        value={taskText}
-        onChange={(e) => setTaskText(e.target.value)}
-        className="w-full sm:flex-grow border rounded p-2 
-      bg-white text-black 
-      dark:bg-gray-700 dark:text-white dark:border-gray-600"
-      />
+      {/* Task Title */}
+      <div>
+        <label className="text-xs text-gray-500 dark:text-gray-400 mb-1 block">
+          Task Title
+        </label>
+        <input
+          type="text"
+          placeholder="Add a task..."
+          value={taskText}
+          onChange={(e) => setTaskText(e.target.value)}
+          className="w-full p-2 rounded-lg border bg-gray-100 dark:bg-gray-700 dark:text-white"
+        />
+      </div>
 
       {/* Date */}
-      <p className="text-xs text-gray-500 dark:text-gray-400">
-        Select due date
-      </p>
-      <input
-        type="date"
-        value={dueDate}
-        onChange={(e) => setDueDate(e.target.value)}
-        className="w-full sm:w-auto border rounded p-2 
-      bg-white text-black 
-      dark:bg-gray-700 dark:text-white dark:border-gray-600"
-      />
+      <div>
+        <label className="text-xs text-gray-500 dark:text-gray-400 mb-1 block">
+          Due Date
+        </label>
+        <input
+          type="date"
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+          className="w-full p-2 rounded-lg border bg-gray-100 dark:bg-gray-700 dark:text-white"
+        />
+      </div>
 
       {/* Priority */}
-      <select
-        value={priority}
-        onChange={(e) => setPriority(e.target.value)}
-        className="w-full sm:w-auto border rounded p-2 
-      bg-white text-black 
-      dark:bg-gray-700 dark:text-white dark:border-gray-600"
-      >
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
+      <div>
+        <label className="text-xs text-gray-500 dark:text-gray-400 mb-1 block">
+          Priority
+        </label>
+        <select
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+          className="w-full p-2 rounded-lg border bg-gray-100 dark:bg-gray-700 dark:text-white"
+        >
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
 
       {/* Button */}
       <button
         type="submit"
-        className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
       >
-        Add
+        + Add Task
       </button>
     </form>
   );

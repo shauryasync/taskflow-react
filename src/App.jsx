@@ -92,17 +92,18 @@ function App() {
             </button>
           </div>
 
-          <h1 className="text-3xl font-bold mb-6 text-center">
-            <span className="text-blue-500">Task</span>
-            Flow
+          <h1 className="text-3xl sm:text-4xl font-bold text-center mb-6 tracking-tight">
+            <span className="text-blue-600">Task</span>
+            <span className="text-gray-800 dark:text-white">Flow</span>
           </h1>
-
           <TaskForm addTask={addTask} />
-          <SearchBar
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
-          <FilterBar filter={filter} setFilter={setFilter} />
+          <div className="mb-4 space-y-3">
+            <SearchBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+            <FilterBar filter={filter} setFilter={setFilter} />
+          </div>
 
           <TaskList
             tasks={sortedTasks}
